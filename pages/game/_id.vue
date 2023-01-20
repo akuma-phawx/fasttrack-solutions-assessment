@@ -1,7 +1,9 @@
 <template>
   <div class="game-container">
     <div v-if="gameRunning">
-      <QuestionsQuestion :questionText="question?.question" />
+      <QuestionsQuestion
+        :questionText="question ? question.question : 'Loading'"
+      />
       <div class="answer-container">
         <div
           v-for="(answer, index) in question?.answers"
@@ -55,16 +57,18 @@ function nextQuestion() {
 }
 
 function fetchQuestions() {
-  const url = "https://opentdb.com/api.php?amount=3";
+  const url = "https://opentdb.com/api.php?amount=3&encode=base64";
   fetch(url)
     .then((response) => response.json())
     .then((data) => {
       data.results.forEach((element) => {
+        element.question = atob(element.question);
         element.answers = [
           ...element.incorrect_answers,
           element.correct_answer,
-        ];
+        ].map((answer) => atob(answer));
       });
+
       questions.value = data.results;
       console.log(questions.value);
     });

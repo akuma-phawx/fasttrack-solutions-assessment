@@ -1,5 +1,5 @@
 <template>
-  <div class="category">{{ category.id }} - {{ category.name }}</div>
+  <div class="category">{{ category?.id }} - {{ category.name }}</div>
 </template>
 
 <script>
