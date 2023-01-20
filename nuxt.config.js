@@ -1,7 +1,7 @@
 export default {
   // Global page headers: https://go.nuxtjs.dev/config-head
   head: {
-    title: "Fast Track Solutions",
+    title: "Fasttrack-Solutions Assesment v1",
     htmlAttrs: {
       lang: "en",
     },

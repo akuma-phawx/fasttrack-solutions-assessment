@@ -1,6 +1,5 @@
 <template>
   <div class="categories-container">
-    <h2>Selected Category : {{ selectedCategory }}</h2>
     <div class="scene">
       <div class="carousel" :style="{ transform: carouselTranform }">
         <CategoriesCategory
@@ -17,7 +16,9 @@
         @rotate-carousel="rotateCarousel"
       />
     </div>
-    <Button class="startGameButton" displayText="Start Game" />
+    <NuxtLink :to="{ path: '/game/' + selectedCategory }">
+      <Button class="startGameButton" displayText="Start Game" />
+    </NuxtLink>
   </div>
 </template>
 

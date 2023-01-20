@@ -4,7 +4,6 @@ const createStore = () => {
   return new Vuex.Store({
     state: {
       gameRunning: false,
-      selectedCategory: { id: 0, name: "NA" },
       questions: [],
       selectedAnswers: [],
     },
@@ -14,9 +13,6 @@ const createStore = () => {
       },
       stopGame(state) {
         state.gameRunning = false;
-      },
-      setSelectedCategory(state, categoryId) {
-        state.selectedCategory = categoryId;
       },
       setQuestions(state, questions) {
         state.questions = questions;
