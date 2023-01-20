@@ -1,19 +1,28 @@
 <template>
-  <div>
-    <h1>{{ question?.question }}</h1>
-    <div v-for="(answer, index) in question?.answers" :key="index">
-      <input
-        type="radio"
-        :value="answer"
-        v-model="selectedAnswer"
-        @change="selectAnswer"
-      />
-      {{ answer }}
+  <div class="game-container">
+    <div v-if="gameRunning">
+      <QuestionsQuestion :questionText="question?.question" />
+      <div class="answer-container">
+        <div
+          v-for="(answer, index) in question?.answers"
+          :key="index"
+          class="answer"
+        >
+          <input
+            type="radio"
+            :value="answer"
+            v-model="selectedAnswer"
+            @change="selectAnswer"
+          />
+          {{ answer }}
+        </div>
+      </div>
+      <div class="button-container">
+        <button class="nextButton" @click="nextQuestion">Next</button>
+      </div>
     </div>
-    <button @click="nextQuestion">Next</button>
     <div v-if="results">
-      <h2>Results</h2>
-      <p>Correct answers: {{ correctAnswers }}</p>
+      <Results :correctAnswers="correctAnswers" />
     </div>
   </div>
 </template>
@@ -21,6 +30,7 @@
 <script setup>
 import { ref, computed } from "vue";
 
+const gameRunning = ref(true);
 const questions = ref([]);
 const selectedAnswer = ref(null);
 const currentQuestion = ref(0);
@@ -37,6 +47,7 @@ function selectAnswer() {
 function nextQuestion() {
   if (currentQuestion.value + 1 === questions.value.length) {
     results.value = true;
+    gameRunning.value = false;
     return;
   }
   currentQuestion.value++;
@@ -61,3 +72,7 @@ function fetchQuestions() {
 
 fetchQuestions();
 </script>
+
+<style style="less" scoped>
+@import "./Answers.styles.less";
+</style>
