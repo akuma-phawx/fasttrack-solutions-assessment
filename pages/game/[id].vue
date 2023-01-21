@@ -54,7 +54,7 @@ fetchQuestions();
 
 <template>
   <div class="game-container">
-    <h2 class="questionHeader">{{ categoryName }}</h2>
+    <h2 v-if="gameRunning" class="questionHeader">{{ categoryName }}</h2>
     <div v-if="gameRunning">
       <QuestionsQuestion
         :questionText="
@@ -81,7 +81,13 @@ fetchQuestions();
         </div>
       </div>
       <div class="button-container">
-        <button class="nextButton" @click="nextQuestion">Next</button>
+        <button
+          :disabled="!selectedAnswer"
+          class="nextButton"
+          @click="nextQuestion"
+        >
+          Next
+        </button>
       </div>
     </div>
     <div v-if="results">

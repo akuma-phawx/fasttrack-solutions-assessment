@@ -17,7 +17,7 @@
   text-transform: uppercase;
   letter-spacing: 1px;
   color: #fff;
-  background-color: palevioletred;
+  background-color: #a40db5;
   border-radius: 1px;
   box-shadow: 0px 10px 20px rgba(0, 0, 0, 0.3);
   position: relative;
@@ -64,10 +64,24 @@
   text-transform: uppercase;
   letter-spacing: 1px;
   color: #fff;
-  background-color: lightgreen;
+  background-color: #1506bf;
   border-radius: 1px;
   box-shadow: 0px 10px 20px rgba(0, 0, 0, 0.3);
   position: relative;
   overflow: hidden;
   transition: all 0.2s ease-in-out;
+}
+
+.reset-button {
+  background-color: #16ab54;
+}
+
+.nextButton:disabled {
+  background-color: gray;
+  cursor: not-allowed;
+}
+
+.nextButton:hover:disabled {
+  transform: none;
+  box-shadow: 0px 10px 20px rgba(0, 0, 0, 0.3);
 }

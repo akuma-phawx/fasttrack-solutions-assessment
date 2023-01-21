@@ -2,7 +2,7 @@
 
 <template>
   <div class="home">
-    <h2>Welcome To FTS QuizBot &#129302;</h2>
+    <h1>&#129302; FTS QuizBot &#129302;</h1>
     <CategoriesContainer />
   </div>
 </template>
@@ -16,6 +16,10 @@
 }
 * {
   font-family: "Raleway";
+}
+
+body {
+  background-color: #dfe4e8;
 }
 .home {
   display: flex;

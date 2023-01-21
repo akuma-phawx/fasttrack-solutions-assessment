@@ -11,19 +11,22 @@ const carouselTranform = ref("");
 const theta = 40;
 const radius = Math.round(100 / 2 / Math.tan(Math.PI / 9));
 
+function categoryClicked(categoryId) {
+  selectedIndex.value = mappedCategoriesToIndex.value[categoryId];
+  selectedCategory.value = categoryId;
+  rotateCarousel();
+}
 function rotateCarousel() {
-  selectedIndex.value++;
+  // selectedIndex.value++;
   const angle = theta * selectedIndex.value * -1;
   carouselTranform.value =
     "translateZ(" + -radius + "px)rotateY(" + angle + "deg)";
-  selectedCategory.value =
-    mappedCategoriesToIndex.value[selectedIndex.value % 9];
 }
 
 function mapCarouselIndexToCategory() {
   let tempVal = selectedIndex.value;
   categories.value.forEach((category) => {
-    mappedCategoriesToIndex.value[tempVal] = category?.id;
+    mappedCategoriesToIndex.value[category?.id] = tempVal;
     tempVal++;
   });
 }
@@ -38,9 +41,7 @@ onBeforeMount(async () => {
       const response = await fetch("https://opentdb.com/api_category.php");
       const { trivia_categories } = await response.json();
       categories.value = shuffle(trivia_categories).slice(0, 9); //displaying only 9 categories
-    } catch (error) {
-      console.log(error);
-    }
+    } catch (error) {}
   };
   await fetchCategories();
   selectedCategory.value = categories.value[0]?.id;
@@ -56,6 +57,7 @@ onBeforeMount(async () => {
           v-for="category in categories"
           :key="category?.id"
           :category="category"
+          @categoryclick="categoryClicked"
         />
       </div>
     </div>
@@ -63,15 +65,10 @@ onBeforeMount(async () => {
       Patience! This is difficult, you know...
     </div>
     <div class="carousel_buttons_container">
-      <Button
-        :isSwiperButton="true"
-        displayText="Next Category"
-        @rotate-carousel="rotateCarousel"
-      />
+      <NuxtLink :to="{ path: '/game/' + selectedCategory }">
+        <Button :isStartButton="true" displayText="Start" />
+      </NuxtLink>
     </div>
-    <NuxtLink :to="{ path: '/game/' + selectedCategory }">
-      <Button :isStartButton="true" displayText="Start" />
-    </NuxtLink>
   </div>
 </template>
 

@@ -26,7 +26,7 @@ const randomPercentage = Math.floor(Math.random() * 100) + 1 + "%";
     </div>
     <div>
       <NuxtLink :to="{ path: '/' }">
-        <button class="reset-button">Reset</button>
+        <button class="reset-button">home page</button>
       </NuxtLink>
     </div>
   </div>
