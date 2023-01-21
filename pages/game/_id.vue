@@ -70,7 +70,6 @@ function fetchQuestions() {
       });
 
       questions.value = data.results;
-      console.log(questions.value);
     });
 }
 
