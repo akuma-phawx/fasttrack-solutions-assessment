@@ -1,5 +1,6 @@
 <script setup>
 import { ref, computed } from "vue";
+import axios from "axios";
 
 const categoryId = useRoute().params.id;
 const categoryName = ref("");
@@ -11,6 +12,12 @@ const correctAnswers = ref(0);
 const results = ref(false);
 
 const question = computed(() => questions.value[currentQuestion.value]);
+const displayText = computed(() =>
+  question.value
+    ? question.value.question
+    : "Please wait while the minions do their work"
+);
+
 function selectAnswer() {
   if (selectedAnswer.value === question.value.correct_answer) {
     correctAnswers.value++;
@@ -27,26 +34,25 @@ function nextQuestion() {
   selectedAnswer.value = null;
 }
 
-function fetchQuestions() {
-  const url =
-    "https://opentdb.com/api.php?amount=3&category=" +
-    categoryId +
-    "&encode=base64";
-  fetch(url)
-    .then((response) => response.json())
-    .then((data) => {
-      categoryName.value = atob(data.results[0].category);
-      data.results.forEach((element) => {
-        element.question = atob(element.question);
-        element.answers = [
-          ...element.incorrect_answers,
-          element.correct_answer,
-        ].map((answer) => atob(answer));
-        element.correct_answer = atob(element.correct_answer);
-      });
+async function fetchQuestions() {
+  try {
+    const url = `https://opentdb.com/api.php?amount=3&category=${categoryId}&encode=base64`;
+    const { data } = await axios.get(url);
 
-      questions.value = data.results;
+    categoryName.value = atob(data.results[0].category);
+
+    data.results.forEach((element) => {
+      element.question = atob(element.question);
+      element.answers = [
+        ...element.incorrect_answers,
+        element.correct_answer,
+      ].map((answer) => atob(answer));
+      element.correct_answer = atob(element.correct_answer);
     });
+    questions.value = data.results;
+  } catch (error) {
+    console.error(error);
+  }
 }
 
 fetchQuestions();
@@ -56,13 +62,7 @@ fetchQuestions();
   <div class="game-container">
     <h2 v-if="gameRunning" class="questionHeader">{{ categoryName }}</h2>
     <div v-if="gameRunning">
-      <QuestionsQuestion
-        :questionText="
-          question
-            ? question.question
-            : 'Please wait while the minions do their work'
-        "
-      />
+      <QuestionsQuestion :questionText="displayText" />
       <div class="answer-container">
         <div
           v-for="(answer, index) in question?.answers"

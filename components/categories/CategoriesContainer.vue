@@ -17,7 +17,6 @@ function categoryClicked(categoryId) {
   rotateCarousel();
 }
 function rotateCarousel() {
-  // selectedIndex.value++;
   const angle = theta * selectedIndex.value * -1;
   carouselTranform.value =
     "translateZ(" + -radius + "px)rotateY(" + angle + "deg)";
@@ -31,7 +30,6 @@ function mapCarouselIndexToCategory() {
   });
 }
 
-//Fetcing Categories Before Mounting
 onBeforeMount(async () => {
   const shuffle = (array) => {
     return array.sort(() => Math.random() - 0.5);
