@@ -3,6 +3,7 @@
 <template>
   <div class="home">
     <h2>&#129302; FTS QuizBot &#129302;</h2>
+    <p>Click on a category to select it</p>
     <CategoriesContainer />
   </div>
 </template>
