@@ -15,7 +15,3 @@ export default {
     {{ category?.id }} - {{ category.name }}
   </div>
 </template>
-
-<style style="less">
-@import "./Category.styles.less";
-</style>

@@ -31,7 +31,3 @@ const randomPercentage = Math.floor(Math.random() * 100) + 1 + "%";
     </div>
   </div>
 </template>
-
-<style style="less">
-@import "./Results.styles.less";
-</style>

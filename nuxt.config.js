@@ -2,7 +2,7 @@ export default {
   // Global page headers: https://go.nuxtjs.dev/config-head
   app: {
     head: {
-      title: "Fasttrack-Solutions Assesment v1",
+      title: "FTS Assesment v1",
       htmlAttrs: {
         lang: "en",
       },
@@ -20,7 +20,14 @@ export default {
     },
   },
   // Global CSS: https://go.nuxtjs.dev/config-css
-  css: ["@/assets/mobile.css"],
+  css: [
+    "@/assets/mobile.css",
+    "@/assets/categories.less",
+    "@/assets/buttons.less",
+    "@/assets/questions.less",
+    "@/assets/results.less",
+    "@/assets/answers.less",
+  ],
 
   // Plugins to run before rendering page: https://go.nuxtjs.dev/config-plugins
   plugins: [],
@@ -32,5 +39,14 @@ export default {
   modules: [],
 
   // Build Configuration: https://go.nuxtjs.dev/config-build
-  build: {},
+  build: {
+    extend(config, { isDev, isClient }) {
+      if (isDev && isClient) {
+        config.module.rules.push({
+          test: /\.less$/,
+          use: ["style-loader", "css-loader", "less-loader"],
+        });
+      }
+    },
+  },
 };

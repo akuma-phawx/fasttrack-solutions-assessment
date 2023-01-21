@@ -2,7 +2,7 @@
 
 <template>
   <div class="home">
-    <h1>&#129302; FTS QuizBot &#129302;</h1>
+    <h2>&#129302; FTS QuizBot &#129302;</h2>
     <CategoriesContainer />
   </div>
 </template>

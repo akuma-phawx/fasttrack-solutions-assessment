@@ -1,29 +1,22 @@
-<script>
-export default {
-  name: "Button",
-  props: {
-    isSwiperButton: {
-      type: Boolean,
-      required: false,
-      default: false,
-    },
-    isStartButton: {
-      type: Boolean,
-      required: false,
-      default: false,
-    },
-    displayText: {
-      type: String,
-      required: true,
-    },
+<script setup>
+const props = defineProps({
+  displayText: {
+    type: String,
+    required: true,
+    default: "",
   },
-};
+  isStartButton: {
+    type: Boolean,
+    required: false,
+    default: false,
+  },
+});
 </script>
 
 <template>
   <div>
     <button
-      :class="{ nextButton: isSwiperButton, startGameButton: isStartButton }"
+      :class="{ startGameButton: isStartButton }"
       type="button"
       @click="$emit('rotate-carousel')"
     >
@@ -31,7 +24,3 @@ export default {
     </button>
   </div>
 </template>
-
-<style style="less">
-@import "./Button.styles.less";
-</style>

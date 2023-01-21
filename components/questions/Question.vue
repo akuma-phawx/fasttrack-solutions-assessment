@@ -12,7 +12,3 @@ const props = defineProps({
     </div>
   </div>
 </template>
-
-<style style="less">
-@import "./Question.styles.less";
-</style>

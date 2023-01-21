@@ -71,7 +71,3 @@ onBeforeMount(async () => {
     </div>
   </div>
 </template>
-
-<style style="less">
-@import "./CategoriesContainer.styles.less";
-</style>

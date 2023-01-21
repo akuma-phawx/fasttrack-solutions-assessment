@@ -95,7 +95,3 @@ fetchQuestions();
     </div>
   </div>
 </template>
-
-<style style="less" scoped>
-@import "./Answers.styles.less";
-</style>
