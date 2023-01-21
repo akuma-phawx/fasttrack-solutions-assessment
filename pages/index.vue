@@ -1,6 +1,6 @@
 <template>
   <div class="home">
-    <h2>Welcome To Learning Bot</h2>
+    <h2>Welcome To FTS QuizBot &#129302;</h2>
     <CategoriesContainer />
   </div>
 </template>
@@ -11,8 +11,14 @@ export default {
 };
 </script>
 <style>
+@font-face {
+  font-family: "Raleway";
+  src: url("./../assets/fonts/Raleway-Regular.ttf") format("truetype");
+  font-weight: normal;
+  font-style: normal;
+}
 * {
-  font-family: sans-serif;
+  font-family: "Raleway";
 }
 .home {
   display: flex;

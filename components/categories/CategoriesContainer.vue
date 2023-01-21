@@ -1,14 +1,15 @@
 <template>
   <div class="categories-container">
-    <div class="scene">
+    <div v-if="categories.length > 0" class="scene">
       <div class="carousel" :style="{ transform: carouselTranform }">
         <CategoriesCategory
           v-for="category in categories"
-          :key="category.id"
+          :key="category?.id"
           :category="category"
         />
       </div>
     </div>
+    <div class="loadingText" v-else>Loading...</div>
     <div class="carousel_buttons_container">
       <Button
         :isSwiperButton="true"
@@ -17,7 +18,7 @@
       />
     </div>
     <NuxtLink :to="{ path: '/game/' + selectedCategory }">
-      <Button class="startGameButton" displayText="Start Game" />
+      <Button :isStartButton="true" displayText="Start" />
     </NuxtLink>
   </div>
 </template>
@@ -47,7 +48,7 @@ function rotateCarousel() {
 function mapCarouselIndexToCategory() {
   let tempVal = selectedIndex.value;
   categories.value.forEach((category) => {
-    mappedCategoriesToIndex.value[tempVal] = category.id;
+    mappedCategoriesToIndex.value[tempVal] = category?.id;
     tempVal++;
   });
 }
@@ -67,7 +68,7 @@ onBeforeMount(async () => {
     }
   };
   await fetchCategories();
-  selectedCategory.value = categories.value[0].id;
+  selectedCategory.value = categories.value[0]?.id;
   mapCarouselIndexToCategory();
 });
 </script>

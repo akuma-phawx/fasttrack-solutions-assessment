@@ -1,7 +1,7 @@
 <template>
   <div>
     <button
-      :class="{ swiper_button: isSwiperButton }"
+      :class="{ nextButton: isSwiperButton, startGameButton: isStartButton }"
       type="button"
       @click="$emit('rotate-carousel')"
     >
@@ -15,6 +15,11 @@ export default {
   name: "Button",
   props: {
     isSwiperButton: {
+      type: Boolean,
+      required: false,
+      default: false,
+    },
+    isStartButton: {
       type: Boolean,
       required: false,
       default: false,
