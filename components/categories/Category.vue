@@ -1,7 +1,3 @@
-<template>
-  <div class="category">{{ category?.id }} - {{ category.name }}</div>
-</template>
-
 <script>
 export default {
   name: "Category",
@@ -13,6 +9,10 @@ export default {
   },
 };
 </script>
+
+<template>
+  <div class="category">{{ category?.id }} - {{ category.name }}</div>
+</template>
 
 <style style="less">
 @import "./Category.styles.less";

@@ -1,3 +1,5 @@
+<script setup></script>
+
 <template>
   <div class="home">
     <h2>Welcome To FTS QuizBot &#129302;</h2>
@@ -5,11 +7,6 @@
   </div>
 </template>
 
-<script>
-export default {
-  name: "IndexPage",
-};
-</script>
 <style>
 @font-face {
   font-family: "Raleway";

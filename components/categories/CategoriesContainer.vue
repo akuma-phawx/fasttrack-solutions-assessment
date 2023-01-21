@@ -1,28 +1,3 @@
-<template>
-  <div class="categories-container">
-    <div v-if="categories.length > 0" class="scene">
-      <div class="carousel" :style="{ transform: carouselTranform }">
-        <CategoriesCategory
-          v-for="category in categories"
-          :key="category?.id"
-          :category="category"
-        />
-      </div>
-    </div>
-    <div class="loadingText" v-else>Loading...</div>
-    <div class="carousel_buttons_container">
-      <Button
-        :isSwiperButton="true"
-        displayText="Next Category"
-        @rotate-carousel="rotateCarousel"
-      />
-    </div>
-    <NuxtLink :to="{ path: '/game/' + selectedCategory }">
-      <Button :isStartButton="true" displayText="Start" />
-    </NuxtLink>
-  </div>
-</template>
-
 <script setup>
 import { ref, onBeforeMount, onMounted } from "vue";
 import Category from "./Category.vue";
@@ -72,6 +47,33 @@ onBeforeMount(async () => {
   mapCarouselIndexToCategory();
 });
 </script>
+
+<template>
+  <div class="categories-container">
+    <div v-if="categories.length > 0" class="scene">
+      <div class="carousel" :style="{ transform: carouselTranform }">
+        <CategoriesCategory
+          v-for="category in categories"
+          :key="category?.id"
+          :category="category"
+        />
+      </div>
+    </div>
+    <div class="loadingText" v-else>
+      Patience! This is difficult, you know...
+    </div>
+    <div class="carousel_buttons_container">
+      <Button
+        :isSwiperButton="true"
+        displayText="Next Category"
+        @rotate-carousel="rotateCarousel"
+      />
+    </div>
+    <NuxtLink :to="{ path: '/game/' + selectedCategory }">
+      <Button :isStartButton="true" displayText="Start" />
+    </NuxtLink>
+  </div>
+</template>
 
 <style style="less">
 @import "./CategoriesContainer.styles.less";
