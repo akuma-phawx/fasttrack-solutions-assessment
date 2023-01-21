@@ -3,7 +3,7 @@ import { ref, computed } from "vue";
 import axios from "axios";
 
 const categoryId = useRoute().params.id;
-const categoryName = ref("");
+const categoryName = ref("Get Ready..");
 const gameRunning = ref(true);
 const questions = ref([]);
 const selectedAnswer = ref(null);
@@ -88,6 +88,8 @@ fetchQuestions();
         >
           Next
         </button>
+        <p>or</p>
+        <NuxtLink :to="{ path: '/' }"> Click here to change category </NuxtLink>
       </div>
     </div>
     <div v-if="results">
