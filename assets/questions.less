@@ -2,7 +2,15 @@
   height: fit-content;
   width: 80%;
   margin: 0 auto;
-  box-shadow: 0px 10px 20px rgba(0, 0, 0, 0.3);
+
+  &::after {
+    content: "";
+    display: block;
+    width: 35%;
+    height: 1px;
+    background: #333;
+    margin: 0 auto;
+  }
   .question-content {
     z-index: 2;
     text-align: center;
@@ -29,7 +37,7 @@
   &::after {
     content: "";
     display: block;
-    width: 5%;
+    width: 15%;
     height: 1px;
     background: #333;
     margin: 0 auto;
@@ -40,4 +48,12 @@
   &::after {
     margin-top: 0.5rem;
   }
+}
+
+.question-answer-container {
+  display: flex;
+  flex-direction: column;
+  width: 80%;
+  padding: 24px;
+  box-shadow: 0px 1px 14px -3px;
 }

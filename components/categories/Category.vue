@@ -12,6 +12,6 @@ export default {
 
 <template>
   <div class="category" @click="$emit('categoryclick', category.id)">
-    {{ category?.id }} - {{ category.name }}
+    {{ category.name }}
   </div>
 </template>

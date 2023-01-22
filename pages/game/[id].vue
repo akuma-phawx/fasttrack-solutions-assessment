@@ -61,7 +61,7 @@ fetchQuestions();
 <template>
   <div class="game-container">
     <h2 v-if="gameRunning" class="questionHeader">{{ categoryName }}</h2>
-    <div v-if="gameRunning">
+    <div class="question-answer-container" v-if="gameRunning">
       <QuestionsQuestion :questionText="displayText" />
       <div class="answer-container">
         <div
@@ -97,3 +97,20 @@ fetchQuestions();
     </div>
   </div>
 </template>
+<style scoped>
+a {
+  color: #333333; /* minimal color */
+  text-decoration: none; /* remove underline */
+  font-weight: bold; /* optional: bold text */
+  animation: fadeIn 1s ease-in-out; /* animation on load */
+}
+
+@keyframes fadeIn {
+  from {
+    opacity: 0;
+  }
+  to {
+    opacity: 1;
+  }
+}
+</style>
