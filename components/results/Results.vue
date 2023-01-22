@@ -21,7 +21,7 @@ const randomPercentage = Math.floor(Math.random() * 100) + 1 + "%";
           >&nbsp;
           <span>({{ correctPercentage }}%)</span>
         </p>
-        <p>You were better then {{ randomPercentage }} of all quizers.</p>
+        <p>You were better than {{ randomPercentage }} of all quizers.</p>
       </div>
     </div>
     <div>
