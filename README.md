@@ -1,5 +1,4 @@
-# fasttrack-assessment!
-
+# fasttrack-assessment
 ## Build Setup
 
 ```bash
